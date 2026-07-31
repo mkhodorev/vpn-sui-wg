@@ -1,0 +1,31 @@
+{
+  "version": 4,
+  "rules": [
+    {
+      "domain": [
+        "youtubei.googleapis.com",
+        "accounts.google.com",
+        "oauth2.googleapis.com",
+        "github-cloud.s3.amazonaws.com"
+      ]
+    },
+    {
+      "domain_suffix": [
+        "2ip.ru",
+        "youtube.com",
+        "youtu.be",
+        "youtube-nocookie.com",
+        "googlevideo.com",
+        "ytimg.com",
+        "ggpht.com",
+        "chatgpt.com",
+        "openai.com",
+        "oaistatic.com",
+        "oaiusercontent.com",
+        "github.com",
+        "githubusercontent.com",
+        "githubassets.com"
+      ]
+    }
+  ]
+}
