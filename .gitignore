@@ -1,0 +1,8 @@
+.env
+backups/
+vpn-sui-wg/data/s-ui/db/*
+vpn-sui-wg/data/s-ui/cert/*
+vpn-sui-wg/data/wg-easy/*
+!vpn-sui-wg/data/s-ui/db/s-ui.db.tmp
+!vpn-sui-wg/data/s-ui/cert/.gitkeep
+!vpn-sui-wg/data/wg-easy/.gitkeep

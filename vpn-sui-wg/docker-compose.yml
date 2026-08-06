@@ -1,0 +1,52 @@
+services:
+  wg-easy:
+    image: ghcr.io/wg-easy/wg-easy:15
+    container_name: wg-easy
+    hostname: wg-easy
+    network_mode: host
+
+    environment:
+      PORT: "${WG_UI_PORT:-27111}"
+      HOST: "127.0.0.1"
+      INSECURE: "true"
+      DISABLE_IPV6: "true"
+
+    volumes:
+      - ./data/wg-easy:/etc/wireguard
+      - /lib/modules:/lib/modules:ro
+
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+
+    devices:
+      - /dev/net/tun:/dev/net/tun
+
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+  s-ui:
+    image: alireza7/s-ui
+    container_name: s-ui
+    hostname: s-ui
+    network_mode: host
+
+    volumes:
+      - ./data/s-ui/db:/app/db
+      - ./data/s-ui/cert:/app/cert
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+
+    cap_add:
+      - NET_ADMIN
+
+    devices:
+      - /dev/net/tun:/dev/net/tun
+
+    depends_on:
+      wg-easy:
+        condition: service_started
+
+    tty: true
+    restart: unless-stopped
+    stop_grace_period: 30s
+    entrypoint: "./entrypoint.sh"
